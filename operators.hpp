@@ -38,32 +38,41 @@ struct OpData
 // List of operators
 // Add new operators to this list
 const OpData opDataList[] = {
-    OpData(UNARY,       "Negation",         "-",    NEGATIVE,       NEG),
+    OpData(UNARY,       "Negation",         "-",        NEGATIVE,       NEG),
 
-    OpData(BINARY,      "Multiplication",   "*",    ARITHMETIC_L1,  MULTIPLY),
-    OpData(BINARY,      "Division",         "/",    ARITHMETIC_L1,  DIVIDE),
-    OpData(BINARY,      "Exponentiation",   "^",    ARITHMETIC_L1,  EXPONENT),
+    OpData(BINARY,      "Multiplication",   "*",        ARITHMETIC_L1,  MULTIPLY),
+    OpData(BINARY,      "Division",         "/",        ARITHMETIC_L1,  DIVIDE),
+    OpData(BINARY,      "Exponentiation",   "^",        ARITHMETIC_L1,  EXPONENT),
 
-    OpData(BINARY,      "Addition",         "+",    ARITHMETIC_L2,  ADD),
-    OpData(BINARY,      "Subtraction",      "-",    ARITHMETIC_L2,  SUBTRACT),
+    OpData(BINARY,      "Addition",         "+",        ARITHMETIC_L2,  ADD),
+    OpData(BINARY,      "Subtraction",      "-",        ARITHMETIC_L2,  SUBTRACT),
 
-    OpData(BINARY,      "Equal",            "==",   COMPARATOR,     EQUAL),
-    OpData(BINARY,      "Greater",          ">",    COMPARATOR,     GREATER),
-    OpData(BINARY,      "Greater Equal",    ">=",   COMPARATOR,     GREATER_EQUAL),
-    OpData(BINARY,      "Lesser",           "<",    COMPARATOR,     LESSER),
-    OpData(BINARY,      "Lesser Equal",     "<=",   COMPARATOR,     LESSER_EQUAL),
-    OpData(BINARY,      "Not Equal",        "!=",   COMPARATOR,     NOT_EQUAL),
+    OpData(BINARY,      "Equal",            "==",       COMPARATOR,     EQUAL),
+    OpData(BINARY,      "Greater",          ">",        COMPARATOR,     GREATER),
+    OpData(BINARY,      "Greater Equal",    ">=",       COMPARATOR,     GREATER_EQUAL),
+    OpData(BINARY,      "Lesser",           "<",        COMPARATOR,     LESSER),
+    OpData(BINARY,      "Lesser Equal",     "<=",       COMPARATOR,     LESSER_EQUAL),
+    OpData(BINARY,      "Not Equal",        "!=",       COMPARATOR,     NOT_EQUAL),
 
-    OpData(UNARY,       "Not",              "!",    LOGICAL,        NOT),
-    OpData(UNARY,       "Not",              "not",  LOGICAL,        NOT),
-    OpData(BINARY,      "And",              "&&",   LOGICAL,        AND),
-    OpData(BINARY,      "And",              "and",  LOGICAL,        AND),
-    OpData(BINARY,      "Or",               "||",   LOGICAL,        OR),
-    OpData(BINARY,      "Or",               "or",   LOGICAL,        OR),
+    OpData(UNARY,       "Not",              "!",        LOGICAL,        NOT),
+    OpData(UNARY,       "Not",              "not",      LOGICAL,        NOT),
+    OpData(BINARY,      "And",              "&&",       LOGICAL,        AND),
+    OpData(BINARY,      "And",              "and",      LOGICAL,        AND),
+    OpData(BINARY,      "Or",               "||",       LOGICAL,        OR),
+    OpData(BINARY,      "Or",               "or",       LOGICAL,        OR),
 
-    OpData(UNARY,       "Natural Log",      "ln",   FUNCTION,       NATURAL_LOG),
-    OpData(BINARY,      "Log",              "log",  FUNCTION,       LOG),
+    // Logarithm
+    OpData(UNARY,       "Natural Log",      "ln",       FUNCTION,       NATURAL_LOG),
+    OpData(BINARY,      "Log",              "log",      FUNCTION,       LOG),
+    
+    // Trigonometry
+    OpData(UNARY,       "Sin",              "sin",      FUNCTION,       SIN),
+    OpData(UNARY,       "Cos",              "cos",      FUNCTION,       COS),
+    OpData(UNARY,       "Tan",              "tan",      FUNCTION,       TAN),
+    OpData(UNARY,       "Sec",              "sec",      FUNCTION,       SEC),
+    OpData(UNARY,       "Cosec",            "cosec",    FUNCTION,       COSEC),
+    OpData(UNARY,       "Cot",              "cot",      FUNCTION,       COT),
 
     // Marks the end of list
-    OpData(INVALID_OP,  "Invalid",          "`",    INVALID_PREC,   INVALID)
+    OpData(INVALID_OP,  "Invalid",          "`",        INVALID_PREC,   INVALID)
 };

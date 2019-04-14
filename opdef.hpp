@@ -93,3 +93,33 @@ double LOG(double operands[])
 {
     return log(operands[1]) / log(operands[0]);
 }
+
+double SIN(double operands[])
+{
+    return sin(operands[0]);
+}
+
+double COS(double operands[])
+{
+    return cos(operands[0]);
+}
+
+double TAN(double operands[])
+{
+    return tan(operands[0]);
+}
+
+double SEC(double operands[])
+{
+    return 1 / cos(operands[0]);
+}
+
+double COSEC(double operands[])
+{
+    return 1 / sin(operands[0]);
+}
+
+double COT(double operands[])
+{
+    return 1 / tan(operands[0]);
+}
