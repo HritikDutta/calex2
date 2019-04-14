@@ -61,12 +61,20 @@ std::vector<ElemContainer> in_post(const char* expr)
             continue;
         }
 
+        // Check for operators
+
+        // Find word length
+        int wordLength = 0;
+        while (!isWhiteSpace(expr[idx + wordLength])
+            && !isDigit(expr[idx + wordLength]))
+                wordLength++;
+
         // Determine opCode for operator
         int opCode = 0;
         while (opDataList[opCode].prec != -1)
         {
             const char* opStr = opDataList[opCode].str;
-            if (compareSubString(expr, idx, opStr, strlen(opStr)))
+            if (compareSubString(expr, idx, wordLength, opStr))
                 break;
             
             opCode++;
@@ -89,7 +97,7 @@ std::vector<ElemContainer> in_post(const char* expr)
         ops.push(ElemContainer(opCode));
         
         // Move cursor to end of operator
-        idx += strlen(opDataList[opCode].str) - 1;
+        idx += strlen(opDataList[opCode].str);
     }
 
     // Add all remaining operators to expression

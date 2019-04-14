@@ -38,3 +38,48 @@ double INVALID(double* operands)
 {
     return -1.0;
 }
+
+double AND(double* operands)
+{
+    return operands[0] && operands[1];
+}
+
+double OR(double* operands)
+{
+    return operands[0] || operands[1];
+}
+
+double NOT(double* operands)
+{
+    return !operands[0];
+}
+
+double GREATER(double* operands)
+{
+    return operands[0] > operands[1];
+}
+
+double LESSER(double* operands)
+{
+    return operands[0] < operands[1];
+}
+
+double GREATER_EQUAL(double* operands)
+{
+    return operands[0] >= operands[1];
+}
+
+double LESSER_EQUAL(double* operands)
+{
+    return operands[0] <= operands[1];
+}
+
+double EQUAL(double* operands)
+{
+    return operands[0] == operands[1];
+}
+
+double NOT_EQUAL(double* operands)
+{
+    return operands[0] != operands[1];
+}

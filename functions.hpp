@@ -34,7 +34,7 @@ double strToDouble(const char* str, int& idx)
 }
 
 // Compares substring
-bool compareSubString(const char* str1, int beg, const char* str2, int len)
+bool compareSubString(const char* str1, int beg, int len, const char* str2)
 {
     int idx = 0;
 	while (idx < len)

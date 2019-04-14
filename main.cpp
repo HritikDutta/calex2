@@ -24,7 +24,7 @@ int main(int argc, char const *argv[])
     // If post expression is empty, close program
     if (post.size() == 0)
         return 1;
-
+    
     double res = solveExpr(post);
 
     std::cout << res << std::endl;
