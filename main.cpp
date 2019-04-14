@@ -1,6 +1,7 @@
 #include <iostream>
 
 #include "parser.hpp"
+#include "solver.hpp"
 
 bool balancedBrackets(const char* str)
 {
@@ -35,11 +36,11 @@ int main(int argc, char const *argv[])
         return 1;
     }
 
-    auto post = in_post(expr);
-    for (auto p: post)
-    {
-        p.print();
-    }
+    std::vector<ElemContainer> post = in_post(expr);
+
+    double res = solveExpr(post);
+
+    std::cout << res << std::endl;
 
     return 0;
 }

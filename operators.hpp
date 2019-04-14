@@ -5,8 +5,9 @@ typedef double (*OPERATION)(double*);
 
 // Type of operator ie. Unary or Binary
 enum OpType {
-    UNARY,
-    BINARY
+    UNARY = 1,
+    BINARY,
+    INVALID_OP
 };
 
 // Data about operators
@@ -25,12 +26,12 @@ struct OpData
 // List of operators
 // Add new operators to this list
 const OpData opDataList[] = {
-    OpData(BINARY,  "Multiplication",   "*",    1,  MULTIPLY),
-    OpData(BINARY,  "Division",         "/",    1,  DIVIDE),
-    OpData(BINARY,  "Exponentiation",   "^",    1,  EXPONENT),
+    OpData(BINARY,      "Multiplication",   "*",    1,  MULTIPLY),
+    OpData(BINARY,      "Division",         "/",    1,  DIVIDE),
+    OpData(BINARY,      "Exponentiation",   "^",    1,  EXPONENT),
 
-    OpData(BINARY,  "Addition",         "+",    2,  ADD),
-    OpData(BINARY,  "Subtraction",      "-",    2,  SUBTRACT),
+    OpData(BINARY,      "Addition",         "+",    2,  ADD),
+    OpData(BINARY,      "Subtraction",      "-",    2,  SUBTRACT),
 
-    OpData(UNARY,   "Invalid",          "`",    -1, INVALID)
+    OpData(INVALID_OP,  "EMPTY",            "`",    -1, INVALID)
 };

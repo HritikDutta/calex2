@@ -1,4 +1,4 @@
-#include "checkers.hpp"
+#include "checkers.cpp"
 
 // Returns length of string
 int strlen(const char* str)
