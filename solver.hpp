@@ -30,7 +30,8 @@ double solveExpr(const std::vector<ElemContainer>& expr)
 
             double res = opDataList[opCode].operate(values);
             dataStack.push(res);
-
+            delete[] values;
+            
             break;
         }
     }

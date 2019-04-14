@@ -26,6 +26,9 @@ std::vector<ElemContainer> in_post(const char* expr)
 
     int len = strlen(expr);
 
+    // Keeps track if '-' is unary or binary
+    bool allow_neg = true;
+
     for (int idx = 0; idx < len; idx++)
     {
         // Ignore white spaces
@@ -37,6 +40,9 @@ std::vector<ElemContainer> in_post(const char* expr)
         {
             double val = strToDouble(expr, idx);
             post.push_back(ElemContainer(val));
+
+            // '-' after a number is binary
+            allow_neg = false;
             continue;
         }
 
@@ -44,13 +50,16 @@ std::vector<ElemContainer> in_post(const char* expr)
         if (expr[idx] == '(')
         {
             ops.push(ElemContainer(BracketType::OPENING_BRACKET));
+            
+            // '-' after opening bracket is unary
+            allow_neg = true;
             continue;
         }
 
         // If closing bracket is encountered
         if (expr[idx] == ')')
         {
-            while (ops.top().type != BRACKET)
+            while (ops.top().type != ElementType::BRACKET)
             {
                 post.push_back(ops.top());
                 ops.pop();
@@ -58,6 +67,9 @@ std::vector<ElemContainer> in_post(const char* expr)
 
             // Pop bracket
             ops.pop();
+
+            // '-' after closing bracket is binary
+            allow_neg = false;
             continue;
         }
 
@@ -71,6 +83,11 @@ std::vector<ElemContainer> in_post(const char* expr)
 
         // Determine opCode for operator
         int opCode = 0;
+        
+        // Ignore negation if allow_neg is false
+        if (!allow_neg)
+            opCode = 1;
+        
         while (opDataList[opCode].prec != -1)
         {
             const char* opStr = opDataList[opCode].str;
@@ -97,7 +114,10 @@ std::vector<ElemContainer> in_post(const char* expr)
         ops.push(ElemContainer(opCode));
         
         // Move cursor to end of operator
-        idx += strlen(opDataList[opCode].str);
+        idx += strlen(opDataList[opCode].str) - 1;
+
+        // '-' after any operator is unary
+        allow_neg = true;
     }
 
     // Add all remaining operators to expression

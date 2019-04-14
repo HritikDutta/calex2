@@ -1,7 +1,7 @@
 #include "opdef.hpp"
 
 // Function pointer for operator function
-typedef double (*OPERATION)(double*);
+typedef double (*OPERATION)(double[]);
 
 // Type of operator ie. Unary or Binary
 // The type can also be used as the number of operands
@@ -18,7 +18,8 @@ enum PrecLevels {
     ARITHMETIC_L1,
     ARITHMETIC_L2,
     COMPARATOR,
-    LOGICAL
+    LOGICAL,
+    FUNCTION
 };
 
 // Data about operators
@@ -37,6 +38,8 @@ struct OpData
 // List of operators
 // Add new operators to this list
 const OpData opDataList[] = {
+    OpData(UNARY,       "Negation",         "-",    NEGATIVE,       NEG),
+
     OpData(BINARY,      "Multiplication",   "*",    ARITHMETIC_L1,  MULTIPLY),
     OpData(BINARY,      "Division",         "/",    ARITHMETIC_L1,  DIVIDE),
     OpData(BINARY,      "Exponentiation",   "^",    ARITHMETIC_L1,  EXPONENT),
@@ -57,6 +60,9 @@ const OpData opDataList[] = {
     OpData(BINARY,      "And",              "and",  LOGICAL,        AND),
     OpData(BINARY,      "Or",               "||",   LOGICAL,        OR),
     OpData(BINARY,      "Or",               "or",   LOGICAL,        OR),
+
+    OpData(UNARY,       "Natural Log",      "ln",   FUNCTION,       NATURAL_LOG),
+    OpData(BINARY,      "Log",              "log",  FUNCTION,       LOG),
 
     // Marks the end of list
     OpData(INVALID_OP,  "Invalid",          "`",    INVALID_PREC,   INVALID)

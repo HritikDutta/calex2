@@ -24,10 +24,15 @@ int main(int argc, char const *argv[])
     // If post expression is empty, close program
     if (post.size() == 0)
         return 1;
+
+    for (auto p : post)
+        p.print();
     
+    std::cout << "\b\b" << std::endl;
+
     double res = solveExpr(post);
 
-    std::cout << res << std::endl;
+    std::cout << ":" << res << std::endl;
 
     return 0;
 }
