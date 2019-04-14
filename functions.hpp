@@ -23,10 +23,8 @@ double strToDouble(const char* str, int& idx)
             continue;
         }
 
-        if (!decimal)
-            d *= 10;
-        else
-            m /= 10;
+        d *= ((decimal * 1) + (!decimal * 10));
+        m /= ((decimal * 10) + (!decimal * 1));
 
         d += m * (str[idx] - '0');
     }
@@ -48,4 +46,23 @@ bool compareSubString(const char* str1, int beg, const char* str2, int len)
 	}
 	
 	return true;
+}
+
+// Check if brackets are balanced in given string
+bool balancedBrackets(const char* str)
+{
+    int open = 0;
+
+    //Closing brackets before opening brackets make expression unbalanced
+    for (int i = 0; str[i] && open >= 0; i++)
+    {
+        if (str[i] == '(')
+            open++;
+        else if (str[i] == ')')
+            open--;
+    }
+
+    //Negative means more ')'
+	//Positive means more '('
+	return open == 0;
 }

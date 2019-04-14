@@ -3,24 +3,6 @@
 #include "parser.hpp"
 #include "solver.hpp"
 
-bool balancedBrackets(const char* str)
-{
-    int open = 0;
-
-    //Closing brackets before opening brackets make expression unbalanced
-    for (int i = 0; str[i] && open >= 0; i++)
-    {
-        if (str[i] == '(')
-            open++;
-        else if (str[i] == ')')
-            open--;
-    }
-
-    //Negative means more ')'
-	//Positive means more '('
-	return open == 0;
-}
-
 int main(int argc, char const *argv[])
 {
     // Exit if no string is given
@@ -37,6 +19,11 @@ int main(int argc, char const *argv[])
     }
 
     auto post = in_post(expr);
+
+    // Rudimentary Error Handling
+    // If post expression is empty, close program
+    if (post.size() == 0)
+        return 1;
 
     double res = solveExpr(post);
 

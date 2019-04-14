@@ -4,6 +4,7 @@
 typedef double (*OPERATION)(double*);
 
 // Type of operator ie. Unary or Binary
+// The type can also be used as the number of operands
 enum OpType {
     UNARY = 1,
     BINARY,
@@ -32,6 +33,6 @@ const OpData opDataList[] = {
 
     OpData(BINARY,      "Addition",         "+",    2,  ADD),
     OpData(BINARY,      "Subtraction",      "-",    2,  SUBTRACT),
-
-    OpData(INVALID_OP,  "EMPTY",            "`",    -1, INVALID)
+    
+    OpData(INVALID_OP,  "Invalid",          "`",    -1, INVALID)
 };
