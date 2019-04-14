@@ -61,6 +61,6 @@ struct ElemContainer
             break;
         }
 
-        std::cout << "}" << std::endl;
+        std::cout << "}, ";
     }
 };

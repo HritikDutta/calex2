@@ -25,6 +25,11 @@ int main(int argc, char const *argv[])
     if (post.size() == 0)
         return 1;
     
+    for (auto p: post)
+        p.print();
+
+    std::cout << "\b\b " << std::endl;
+
     double res = solveExpr(post);
 
     std::cout << res << std::endl;
