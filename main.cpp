@@ -36,7 +36,7 @@ int main(int argc, char const *argv[])
         return 1;
     }
 
-    std::vector<ElemContainer> post = in_post(expr);
+    auto post = in_post(expr);
 
     double res = solveExpr(post);
 
