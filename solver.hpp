@@ -8,33 +8,44 @@ double solveExpr(const std::vector<ElemContainer>& expr)
     {
         switch (expr[idx].type)
         {
-        // Data gets pushed to stack
+        // DATA
         case ElementType::DATA:
+            // Data gets pushed to stack
             dataStack.push(expr[idx].value);
             break;
 
-        // Get values from data stack and operate accourding to operator
-        case ElementType::OPERATOR:
-            int opCode = expr[idx].opCode;
+        // KEYWORD
+        case ElementType::KEYWORD:
+            // Get keyword code
+            int kwCode = expr[idx].kwCode;
+            
+            // Constants are already pushed as doubles during parsing
+            // Hence only operators need to be considered
+            
+            // Get operator using keyword code
+            auto op = keywords[kwCode];
+            int operandCount = op.opType;
 
-            int operandCount = opDataList[opCode].type;
+            // This array will contain the operands required by the operator
             double* values = new double[operandCount];
 
-            // Data stack contains values in reverse order
-            // Hence the values added to the array in the correct order
+            // Place values into the array
             while (operandCount--)
             {
                 values[operandCount] = dataStack.top();
                 dataStack.pop();
             }
 
-            double res = opDataList[opCode].operate(values);
+            // Operation is performed and result is pushed back into the stack
+            double res = op.operate(values);
             dataStack.push(res);
+
+            // Delete the array of operands
             delete[] values;
-            
             break;
         }
     }
 
+    // The last remaining value in the stack will be the result
     return dataStack.top();
 }

@@ -1,11 +1,11 @@
 #include <iostream>
 
-#include "operators.hpp"
+#include "keywords.hpp"
 
 // Type of element ie. Data, Operator or Bracket
 enum ElementType {
     DATA,
-    OPERATOR,
+    KEYWORD,
     BRACKET
 };
 
@@ -25,7 +25,7 @@ struct ElemContainer
         double value;
 
         // OPERATOR
-        int opCode;
+        int kwCode;
 
         // BRACKET
         BracketType isOpen;
@@ -35,9 +35,9 @@ struct ElemContainer
     ElemContainer(double value)
     : type(DATA), value(value) {}
 
-    // For OPERATOR
-    ElemContainer(int opCode)
-    : type(OPERATOR), opCode(opCode) {}
+    // For KEYWORD
+    ElemContainer(int kwCode)
+    : type(KEYWORD), kwCode(kwCode) {}
 
     // For BRACKET
     ElemContainer(BracketType isOpen)
@@ -49,15 +49,15 @@ struct ElemContainer
         switch(type)
         {
         case DATA:
-            std::cout << "DATA, " << value;
+            std::cout << "DATA: " << value;
             break;
         
         case OPERATOR:
-            std::cout << "OPERATOR, " << opDataList[opCode].str;
+            std::cout << "KEYWORD: " << keywords[kwCode].str;
             break;
 
         case BRACKET:
-            std::cout << "BRACKET, " << isOpen;
+            std::cout << "BRACKET: " << isOpen;
             break;
         }
 

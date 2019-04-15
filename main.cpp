@@ -3,6 +3,9 @@
 #include "parser.hpp"
 #include "solver.hpp"
 
+// COMMENT BEFORE COMMITTING
+// #define DEBUG
+
 int main(int argc, char const *argv[])
 {
     // Exit if no string is given
@@ -25,14 +28,15 @@ int main(int argc, char const *argv[])
     if (post.size() == 0)
         return 1;
 
+#ifdef DEBUG
     for (auto p : post)
         p.print();
-    
-    std::cout << "\b\b" << std::endl;
+    std::cout << "\b\b " << std::endl;
+#endif
 
     double res = solveExpr(post);
 
-    std::cout << ":" << res << std::endl;
+    std::cout << res << std::endl;
 
     return 0;
 }

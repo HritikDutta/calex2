@@ -8,11 +8,11 @@
 // Check if first operator has higher precedence than second
 bool greaterPrec(int op1, int op2)
 {
-    if (opDataList[op1].type == OpType::UNARY
-        && opDataList[op2].type == OpType::BINARY)
+    if (keywords[op1].opType == OpType::UNARY
+        && keywords[op2].opType == OpType::BINARY)
         return false;
     
-    if (opDataList[op1].prec < opDataList[op2].prec)
+    if (keywords[op1].prec < keywords[op2].prec)
         return false;
 
     return true;
@@ -22,7 +22,7 @@ bool greaterPrec(int op1, int op2)
 std::vector<ElemContainer> in_post(const char* expr)
 {
     std::vector<ElemContainer> post;
-    Stack<ElemContainer> ops;
+    Stack<ElemContainer> opStack;
 
     int len = strlen(expr);
 
@@ -49,7 +49,7 @@ std::vector<ElemContainer> in_post(const char* expr)
         // If opening bracket is encountered
         if (expr[idx] == '(')
         {
-            ops.push(ElemContainer(BracketType::OPENING_BRACKET));
+            opStack.push(ElemContainer(BracketType::OPENING_BRACKET));
             
             // '-' after opening bracket is unary
             allow_neg = true;
@@ -59,71 +59,78 @@ std::vector<ElemContainer> in_post(const char* expr)
         // If closing bracket is encountered
         if (expr[idx] == ')')
         {
-            while (ops.top().type != ElementType::BRACKET)
+            while (opStack.top().type != ElementType::BRACKET)
             {
-                post.push_back(ops.top());
-                ops.pop();
+                post.push_back(opStack.top());
+                opStack.pop();
             }
 
             // Pop bracket
-            ops.pop();
+            opStack.pop();
 
             // '-' after closing bracket is binary
             allow_neg = false;
             continue;
         }
 
-        // Check for operators
+        // Check for keywords
 
-        // Determine opCode for operator
-        int opIdx = !allow_neg;
-        int opCode = opIdx;
+        // Find code for keyword
+        int kwCode = 0;
         bool found = false;
 
-        while(opDataList[opIdx].prec != -1)
+        for (int i = 0; keywords[i].type != EMPTY; i++)
         {
-            const char* opStr = opDataList[opIdx].str;
-            if (compareSubString(expr, idx, strlen(opStr), opStr))
-            {
-                // The longest matching substring is the correct operator
-                if (!found || strlen(opDataList[opCode].str) <= strlen(opStr))
-                {
-                    opCode = opIdx;
-                    found = true;
-                }
-            }
+            // Don't check for negation if allow_neg is false
+            if (keywords[i].prec == NEGATIVE && !allow_neg)
+                continue;
 
-            opIdx++;
+            const char* kw = keywords[i].str;
+            if (compareSubString(expr, idx, strlen(kw), kw))
+            {
+                // The longest matching substring is considered the correct keyword
+                if (!found || strlen(keywords[kwCode].str) <= strlen(kw))
+                    kwCode = i;
+
+                found = true;
+            }
         }
 
-        // If operator is not found
+        // If not found
         if (!found)
             continue;
 
-        // Keep popping operators and adding to expression till stack is empty,
-        // bracket is encountered or an operator of greater precedence is encountered
-        while (!ops.empty()
-            && ops.top().type != ElementType::BRACKET
-            && greaterPrec(opCode, ops.top().opCode))
-        {
-            post.push_back(ops.top());
-            ops.pop();
+        // If keyword is a constant
+        if (keywords[kwCode].type == CONSTANT)
+            // Value is pushed directly
+            post.push_back(keywords[kwCode].value);
+        else {
+            // Pop operators and push them into expression until the stack is empty,
+            // a bracket is encountered or the next operator has greater precedence
+            while (!opStack.empty()
+                && opStack.top().type != ElementType::BRACKET
+                && greaterPrec(kwCode, opStack.top().kwCode))
+            {
+                post.push_back(opStack.top());
+                opStack.pop();
+            }
+
+            // Push operator into stack
+            opStack.push(ElemContainer(kwCode));
         }
 
-        ops.push(ElemContainer(opCode));
-        
-        // Move cursor to end of operator
-        idx += strlen(opDataList[opCode].str) - 1;
+        // Move idx to the end of the keyword
+        idx += strlen(keywords[kwCode].str) - 1;
 
-        // '-' after any operator is unary
+        // '-' after any keyword is unary
         allow_neg = true;
     }
 
     // Add all remaining operators to expression
-    while (!ops.empty())
+    while (!opStack.empty())
     {
-        post.push_back(ops.top());
-        ops.pop();
+        post.push_back(opStack.top());
+        opStack.pop();
     }
 
     return post;
