@@ -40,9 +40,12 @@ struct OpData
 const OpData opDataList[] = {
     OpData(UNARY,       "Negation",         "-",        NEGATIVE,       NEG),
 
+    OpData(UNARY,       "Square Root",      "sqrt",     ARITHMETIC_L1,  SQRT),
+    OpData(UNARY,       "Exponentiation",   "exp",      ARITHMETIC_L1,  EXP),
     OpData(BINARY,      "Multiplication",   "*",        ARITHMETIC_L1,  MULTIPLY),
     OpData(BINARY,      "Division",         "/",        ARITHMETIC_L1,  DIVIDE),
-    OpData(BINARY,      "Exponentiation",   "^",        ARITHMETIC_L1,  EXPONENT),
+    OpData(BINARY,      "Power",            "^",        ARITHMETIC_L1,  POW),
+    OpData(BINARY,      "Power",            "pow",      ARITHMETIC_L1,  POW),
 
     OpData(BINARY,      "Addition",         "+",        ARITHMETIC_L2,  ADD),
     OpData(BINARY,      "Subtraction",      "-",        ARITHMETIC_L2,  SUBTRACT),

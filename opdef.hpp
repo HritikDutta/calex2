@@ -29,7 +29,7 @@ double SUBTRACT(double operands[])
     return operands[0] - operands[1];
 }
 
-double EXPONENT(double operands[])
+double POW(double operands[])
 {
     return pow(operands[0], operands[1]);
 }
@@ -122,4 +122,14 @@ double COSEC(double operands[])
 double COT(double operands[])
 {
     return 1 / tan(operands[0]);
+}
+
+double SQRT(double operands[])
+{
+    return sqrt(operands[0]);
+}
+
+double EXP(double operands[])
+{
+    return exp(operands[0]);
 }
