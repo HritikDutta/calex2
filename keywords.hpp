@@ -4,12 +4,21 @@
 // Function pointer for operator function
 typedef double (*OPERATION)(double[]);
 
+// Keyword types: Constant or Operator
+// Empty is used to mark the end of keywords list
 enum KeywordType {
     CONSTANT,
     OPERATOR,
     EMPTY
 };
 
+// Structure to store data about keywords
+// All keywords have a type, name and string
+
+// Constants have values
+
+// Operators have optype(Unary or Binary),
+// precedence level and an operate function
 struct KeywordData
 {
     KeywordType type;
@@ -39,10 +48,11 @@ struct KeywordData
     : type(OPERATOR), opType(opType), name(name), str(str), prec(prec), operate(op) {}
 
     KeywordData()
-    : type(EMPTY) {}
+    : type(EMPTY), name(nullptr), str(nullptr) {}
 
 };
 
+// List of Allowed Keywords
 const KeywordData keywords[] = {
 
     /*-------------------------------------CONSTANTS--------------------------------------*/
