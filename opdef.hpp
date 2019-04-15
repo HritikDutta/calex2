@@ -142,6 +142,24 @@ double COT(double operands[])
     return 1 / tan(operands[0]);
 }
 
+// Hyperbolic Sine Function
+double SINH(double operands[])
+{
+    return sinh(operands[0]);
+}
+
+// Hyperbolic Cosine Function
+double COSH(double operands[])
+{
+    return cosh(operands[0]);
+}
+
+// Hyperbolic Tangent Function
+double TANH(double operands[])
+{
+    return tanh(operands[0]);
+}
+
 // Square Root Function
 double SQRT(double operands[])
 {
@@ -152,4 +170,10 @@ double SQRT(double operands[])
 double EXP(double operands[])
 {
     return exp(operands[0]);
+}
+
+// Conditional Operator
+double COND(double operands[])
+{
+    return (operands[0]) ? operands[1] : operands[2];
 }

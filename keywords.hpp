@@ -47,6 +47,7 @@ struct KeywordData
     KeywordData(OpType opType, const char* name, const char* str, PrecLevel prec, OPERATION op)
     : type(OPERATOR), opType(opType), name(name), str(str), prec(prec), operate(op) {}
 
+    // For EMPTY
     KeywordData()
     : type(EMPTY), name(nullptr), str(nullptr) {}
 
@@ -57,49 +58,58 @@ const KeywordData keywords[] = {
 
     /*-------------------------------------CONSTANTS--------------------------------------*/
 
-    KeywordData("Pi",       "pi",   M_PI),
-    KeywordData("Exponent", "e",    M_E),
+    KeywordData("Pi",       "pi",       M_PI),
+    KeywordData("Exponent", "e",        M_E),
+    KeywordData("True",     "true",     1),
+    KeywordData("False",    "false",    0),
 
     /*-------------------------------------OPERATORS--------------------------------------*/
 
-    KeywordData(UNARY,       "Negation",         "-",        NEGATIVE,       NEG),
+    KeywordData(UNARY,      "Negation",         "-",        NEGATIVE,       NEG),
 
-    KeywordData(UNARY,       "Square Root",      "sqrt",     ARITHMETIC_L1,  SQRT),
-    KeywordData(UNARY,       "Exponentiation",   "exp",      ARITHMETIC_L1,  EXP),
-    KeywordData(BINARY,      "Multiplication",   "*",        ARITHMETIC_L1,  MULTIPLY),
-    KeywordData(BINARY,      "Division",         "/",        ARITHMETIC_L1,  DIVIDE),
-    KeywordData(BINARY,      "Power",            "^",        ARITHMETIC_L1,  POW),
-    KeywordData(BINARY,      "Power",            "pow",      ARITHMETIC_L1,  POW),
+    KeywordData(UNARY,      "Square Root",      "sqrt",     ARITHMETIC_L1,  SQRT),
+    KeywordData(UNARY,      "Exponentiation",   "exp",      ARITHMETIC_L1,  EXP),
+    KeywordData(BINARY,     "Multiplication",   "*",        ARITHMETIC_L1,  MULTIPLY),
+    KeywordData(BINARY,     "Division",         "/",        ARITHMETIC_L1,  DIVIDE),
+    KeywordData(BINARY,     "Power",            "^",        ARITHMETIC_L1,  POW),
+    KeywordData(BINARY,     "Power",            "pow",      ARITHMETIC_L1,  POW),
 
-    KeywordData(BINARY,      "Addition",         "+",        ARITHMETIC_L2,  ADD),
-    KeywordData(BINARY,      "Subtraction",      "-",        ARITHMETIC_L2,  SUBTRACT),
+    KeywordData(BINARY,     "Addition",         "+",        ARITHMETIC_L2,  ADD),
+    KeywordData(BINARY,     "Subtraction",      "-",        ARITHMETIC_L2,  SUBTRACT),
 
-    KeywordData(BINARY,      "Equal",            "==",       COMPARATOR,     EQUAL),
-    KeywordData(BINARY,      "Greater",          ">",        COMPARATOR,     GREATER),
-    KeywordData(BINARY,      "Greater Equal",    ">=",       COMPARATOR,     GREATER_EQUAL),
-    KeywordData(BINARY,      "Lesser",           "<",        COMPARATOR,     LESSER),
-    KeywordData(BINARY,      "Lesser Equal",     "<=",       COMPARATOR,     LESSER_EQUAL),
-    KeywordData(BINARY,      "Not Equal",        "!=",       COMPARATOR,     NOT_EQUAL),
+    KeywordData(BINARY,     "Equals",           "==",       COMPARATOR,     EQUAL),
+    KeywordData(BINARY,     "Greater",          ">",        COMPARATOR,     GREATER),
+    KeywordData(BINARY,     "Greater Equal",    ">=",       COMPARATOR,     GREATER_EQUAL),
+    KeywordData(BINARY,     "Lesser",           "<",        COMPARATOR,     LESSER),
+    KeywordData(BINARY,     "Lesser Equal",     "<=",       COMPARATOR,     LESSER_EQUAL),
+    KeywordData(BINARY,     "Not Equals",       "!=",       COMPARATOR,     NOT_EQUAL),
 
-    KeywordData(UNARY,       "Not",              "!",        LOGICAL,        NOT),
-    KeywordData(UNARY,       "Not",              "not",      LOGICAL,        NOT),
-    KeywordData(BINARY,      "And",              "&&",       LOGICAL,        AND),
-    KeywordData(BINARY,      "And",              "and",      LOGICAL,        AND),
-    KeywordData(BINARY,      "Or",               "||",       LOGICAL,        OR),
-    KeywordData(BINARY,      "Or",               "or",       LOGICAL,        OR),
+    KeywordData(UNARY,      "Not",              "!",        LOGICAL,        NOT),
+    KeywordData(UNARY,      "Not",              "not",      LOGICAL,        NOT),
+    KeywordData(BINARY,     "And",              "&&",       LOGICAL,        AND),
+    KeywordData(BINARY,     "And",              "and",      LOGICAL,        AND),
+    KeywordData(BINARY,     "Or",               "||",       LOGICAL,        OR),
+    KeywordData(BINARY,     "Or",               "or",       LOGICAL,        OR),
 
     // Logarithmic Functions
-    KeywordData(UNARY,       "Natural Log",      "ln",       FUNCTION,       NATURAL_LOG),
-    KeywordData(BINARY,      "Log",              "log",      FUNCTION,       LOG),
+    KeywordData(UNARY,      "Natural Log",      "ln",       FUNCTION,       NATURAL_LOG),
+    KeywordData(BINARY,     "Log",              "log",      FUNCTION,       LOG),
     
     // Trigonometric Functions
-    KeywordData(UNARY,       "Sin",              "sin",      FUNCTION,       SIN),
-    KeywordData(UNARY,       "Cos",              "cos",      FUNCTION,       COS),
-    KeywordData(UNARY,       "Tan",              "tan",      FUNCTION,       TAN),
-    KeywordData(UNARY,       "Sec",              "sec",      FUNCTION,       SEC),
-    KeywordData(UNARY,       "Cosec",            "cosec",    FUNCTION,       COSEC),
-    KeywordData(UNARY,       "Cot",              "cot",      FUNCTION,       COT),
+    KeywordData(UNARY,      "Sin",              "sin",      FUNCTION,       SIN),
+    KeywordData(UNARY,      "Cos",              "cos",      FUNCTION,       COS),
+    KeywordData(UNARY,      "Tan",              "tan",      FUNCTION,       TAN),
+    KeywordData(UNARY,      "Sec",              "sec",      FUNCTION,       SEC),
+    KeywordData(UNARY,      "Cosec",            "cosec",    FUNCTION,       COSEC),
+    KeywordData(UNARY,      "Cot",              "cot",      FUNCTION,       COT),
+    KeywordData(UNARY,      "Sinh",             "sinh",     FUNCTION,       SINH),
+    KeywordData(UNARY,      "Cosh",             "cosh",     FUNCTION,       COSH),
+    KeywordData(UNARY,      "Tanh",             "tanh",     FUNCTION,       TANH),
+    
+    // Conditional Operator
+    KeywordData(TERNARY,    "Conditional",      "if",       CONDITIONAL,    COND),
 
     /*------------------------------------END OF LIST-------------------------------------*/
+
     KeywordData()   //Empty keyword
 };

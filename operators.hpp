@@ -2,7 +2,8 @@
 // The type can also be used as the number of operands
 enum OpType {
     UNARY = 1,
-    BINARY
+    BINARY,
+    TERNARY
 };
 
 // Precedence Levels
@@ -13,5 +14,6 @@ enum PrecLevel {
     ARITHMETIC_L2,
     COMPARATOR,
     LOGICAL,
-    FUNCTION
+    FUNCTION,
+    CONDITIONAL
 };

@@ -43,6 +43,7 @@ struct ElemContainer
     ElemContainer(BracketType isOpen)
     : type(BRACKET), isOpen(isOpen) {}
 
+    // Print method for debugging
     void print()
     {
         std::cout << "{";
