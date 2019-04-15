@@ -76,23 +76,29 @@ std::vector<ElemContainer> in_post(const char* expr)
         // Check for operators
 
         // Determine opCode for operator
-        int opCode = 0;
-        
         // Ignore negation if allow_neg is false
-        if (!allow_neg)
-            opCode = 1;
-        
-        while (opDataList[opCode].prec != -1)
+        int opIdx = !allow_neg;
+        int opCode = opIdx;
+        bool found = false;
+
+        while (opDataList[opIdx].prec != -1)
         {
-            const char* opStr = opDataList[opCode].str;
+            const char* opStr = opDataList[opIdx].str;
             if (compareSubString(expr, idx, strlen(opStr), opStr))
-                break;
+            {
+                // The longest operator string that matches is the correct one
+                if (strlen(opDataList[opCode].str) < strlen(opStr))
+                {
+                    opCode = opIdx;
+                    found = true;
+                }
+            }
             
-            opCode++;
+            opIdx++;
         }
 
         // If a valid operator is not encountered
-        if (opDataList[opCode].prec == -1)
+        if (!found)
             continue;
 
         // Keep popping operators and adding to expression till stack is empty,

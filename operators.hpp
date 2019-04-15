@@ -61,11 +61,11 @@ const OpData opDataList[] = {
     OpData(BINARY,      "Or",               "||",       LOGICAL,        OR),
     OpData(BINARY,      "Or",               "or",       LOGICAL,        OR),
 
-    // Logarithm
+    // Logarithmic Functions
     OpData(UNARY,       "Natural Log",      "ln",       FUNCTION,       NATURAL_LOG),
     OpData(BINARY,      "Log",              "log",      FUNCTION,       LOG),
     
-    // Trigonometry
+    // Trigonometric Functions
     OpData(UNARY,       "Sin",              "sin",      FUNCTION,       SIN),
     OpData(UNARY,       "Cos",              "cos",      FUNCTION,       COS),
     OpData(UNARY,       "Tan",              "tan",      FUNCTION,       TAN),
