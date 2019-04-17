@@ -19,7 +19,7 @@ bool greaterPrec(int op1, int op2)
 }
 
 // Parse string into a postfix expression
-std::vector<ElemContainer> in_post(const char* expr)
+std::vector<ElemContainer> in_post(const char*& expr)
 {
     std::vector<ElemContainer> post;
     Stack<ElemContainer> opStack;
@@ -47,9 +47,9 @@ std::vector<ElemContainer> in_post(const char* expr)
         }
 
         // If opening bracket is encountered
-        if (expr[idx] == '(')
+        if (expr[idx] == BracketType::OPENING_BRACKET)
         {
-            opStack.push(ElemContainer(BracketType::OPENING_BRACKET));
+            opStack.push(ElemContainer(expr[idx]));
             
             // '-' after opening bracket is unary
             allow_neg = true;
@@ -57,7 +57,7 @@ std::vector<ElemContainer> in_post(const char* expr)
         }
 
         // If closing bracket is encountered
-        if (expr[idx] == ')')
+        if (expr[idx] == BracketType::CLOSING_BRACKET)
         {
             while (opStack.top().type != ElementType::BRACKET)
             {
@@ -103,7 +103,7 @@ std::vector<ElemContainer> in_post(const char* expr)
         // If keyword is a constant
         if (keywords[kwCode].type == CONSTANT)
             // Value is pushed directly
-            post.push_back(keywords[kwCode].value);
+            post.push_back(ElemContainer(keywords[kwCode].value));
         else {
             // Pop operators and push them into expression until the stack is empty,
             // a bracket is encountered or the next operator has greater precedence

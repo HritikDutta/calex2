@@ -11,8 +11,8 @@ enum ElementType {
 
 // Type of bracket ie. Opening or Closing
 enum BracketType {
-    OPENING_BRACKET,
-    CLOSING_BRACKET
+    OPENING_BRACKET = '(',
+    CLOSING_BRACKET = ')'
 };
 
 // All elements in the expression are stored in a container
@@ -24,7 +24,7 @@ struct ElemContainer
         // DATA
         double value;
 
-        // OPERATOR
+        // KEYWORD
         int kwCode;
 
         // BRACKET

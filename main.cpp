@@ -21,6 +21,7 @@ int main(int argc, char const *argv[])
         return 1;
     }
 
+    // Convert infix expression to postfix
     auto post = in_post(expr);
 
     // Rudimentary Error Handling
@@ -34,9 +35,7 @@ int main(int argc, char const *argv[])
     std::cout << "\b\b " << std::endl;
 #endif
 
+    // Solve postfix expression
     double res = solveExpr(post);
-
     std::cout << res << std::endl;
-
-    return 0;
 }

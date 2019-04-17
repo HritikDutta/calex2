@@ -23,7 +23,7 @@ double solveExpr(const std::vector<ElemContainer>& expr)
             // Hence only operators need to be considered
             
             // Get operator using keyword code
-            auto op = keywords[kwCode];
+            const auto& op = keywords[kwCode];
             int operandCount = op.opType;
 
             // This array will contain the operands required by the operator
