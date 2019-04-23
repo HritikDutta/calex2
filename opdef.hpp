@@ -172,6 +172,18 @@ double EXP(double operands[])
     return exp(operands[0]);
 }
 
+// Maximum between two numbers
+double MAX(double operands[])
+{
+    return (operands[0] > operands[1]) ? operands[0] : operands[1];
+}
+
+// Minimum between two numbers
+double MIN(double operands[])
+{
+    return (operands[0] < operands[1]) ? operands[0] : operands[1];
+}
+
 // Conditional Operator
 double COND(double operands[])
 {

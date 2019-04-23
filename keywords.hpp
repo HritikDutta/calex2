@@ -21,7 +21,7 @@ enum KeywordType {
 // precedence level and an operate function
 struct KeywordData
 {
-    KeywordType type;
+    const KeywordType type;
     const char* name;
     const char* str;
 
@@ -33,9 +33,9 @@ struct KeywordData
 
         // OPERATOR
         struct {
-            OpType opType;
-            PrecLevel prec;
-            OPERATION operate;
+            const OpType opType;
+            const PrecLevel prec;
+            const OPERATION operate;
         };
     };
 
@@ -60,8 +60,8 @@ const KeywordData keywords[] = {
 
     KeywordData("Pi",       "pi",       M_PI),
     KeywordData("Exponent", "e",        M_E),
-    KeywordData("True",     "true",     1),
-    KeywordData("False",    "false",    0),
+    KeywordData("True",     "true",     true),
+    KeywordData("False",    "false",    false),
 
     /*-------------------------------------OPERATORS--------------------------------------*/
 
@@ -106,6 +106,10 @@ const KeywordData keywords[] = {
     KeywordData(UNARY,      "Cosh",             "cosh",     FUNCTION,       COSH),
     KeywordData(UNARY,      "Tanh",             "tanh",     FUNCTION,       TANH),
     
+    // Other Functions
+    KeywordData(BINARY,     "Maximum",          "max",      FUNCTION,       MAX),
+    KeywordData(BINARY,     "Minimum",          "min",      FUNCTION,       MIN),
+
     // Conditional Operator
     KeywordData(TERNARY,    "Conditional",      "if",       CONDITIONAL,    COND),
 

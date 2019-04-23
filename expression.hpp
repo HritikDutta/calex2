@@ -26,9 +26,6 @@ struct ElemContainer
 
         // KEYWORD
         int kwCode;
-
-        // BRACKET
-        BracketType isOpen;
     };
 
     // For DATA
@@ -40,8 +37,8 @@ struct ElemContainer
     : type(KEYWORD), kwCode(kwCode) {}
 
     // For BRACKET
-    ElemContainer(BracketType isOpen)
-    : type(BRACKET), isOpen(isOpen) {}
+    ElemContainer(char bracket)
+    : type(BRACKET) {}
 
     // Print method for debugging
     void print()
@@ -55,10 +52,6 @@ struct ElemContainer
         
         case OPERATOR:
             std::cout << "KEYWORD: " << keywords[kwCode].str;
-            break;
-
-        case BRACKET:
-            std::cout << "BRACKET: " << isOpen;
             break;
         }
 
